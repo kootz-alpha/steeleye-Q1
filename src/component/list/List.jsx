@@ -27,7 +27,7 @@ const List = ({ rows, selectedCurrency, onOrderSelect }) => {
             <ListRowCell>{row.executionDetails.buySellIndicator}</ListRowCell>
             <ListRowCell>{row.executionDetails.orderStatus}</ListRowCell>
             <ListRowCell>{row.orderSubmitted}</ListRowCell>
-            <ListRowCell>{row.bestExecutionData.orderVolume[selectedCurrency]}</ListRowCell>
+            <ListRowCell>{row.bestExecutionData.orderVolume[selectedCurrency]}</ListRowCell> // To show for the selected currency only
           </ListRow>
         ))}
       </tbody>
