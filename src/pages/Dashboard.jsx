@@ -18,17 +18,19 @@ const Dashboard = () => {
   const [searchText, setSearchText] = useState("");
   const [selectedOrderDetails, setSelectedOrderDetails] = useState({});
   const [selectedOrderTimeStamps, setSelectedOrderTimeStamps] = useState({});
-  const [orderList, setOrderList] = useState(mockData.results);
+  const [orderList, setOrderList] = useState(mockData.results); // List of orders to be shown. Depending on the text in the search bar.
 
+  // Function to handle the selection of an order. It updates the "Selected Order Details" and "Selected Order Timestamps" cards.
   const handleOrderSelect = (orderId) => {
 
     console.log("Selected order with id ", orderId);
     const selectedOrder = mockData.results.find((order) => order["&id"] === orderId);
 
     setSelectedOrderDetails(selectedOrder.executionDetails);
-    setSelectedOrderTimeStamps(selectedOrder.timestamps);
+    setSelectedOrderTimeStamps(selectedOrder.timestamps); // timestamps were added to the orders in data.json from timestamps.json
   };
 
+  // Function to handle changes in the search bar text
   const handleSearchChange = (e) => {
     setSearchText(e.target.value);
 
@@ -44,7 +46,7 @@ const Dashboard = () => {
   return (
     <div>
       <div className={styles.header}>
-        <HeaderTitle primaryTitle="Orders" secondaryTitle="6 orders" /> 
+        <HeaderTitle primaryTitle="Orders" secondaryTitle="6 orders" /> // Title updated
         <div className={styles.actionBox}>
           <Search
             value={searchText}
@@ -58,7 +60,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className={styles.content}>
-        <div className={styles.section}>
+        <div className={styles.section}> // css updated to display the cards in a row
           <Card
             cardData={selectedOrderDetails}
             title="Selected Order Details"
@@ -70,8 +72,8 @@ const Dashboard = () => {
         </div>
         <List 
           rows={orderList}
-          selectedCurrency={currency} 
-          onOrderSelect={handleOrderSelect}
+          selectedCurrency={currency} // Added new property to know the currently selected currency
+          onOrderSelect={handleOrderSelect} // Added new property to handle order selection
         />
       </div>
     </div>
